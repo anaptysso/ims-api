@@ -1,0 +1,74 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {},
+        "license": {}
+    },
+    "paths": {
+        "/account/signup": {
+            "post": {
+                "description": "It will register new users if the post data provided properly.",
+                "consumes": [
+                    "application/json"
+                ],
+                "summary": "Signup an account test",
+                "operationId": "signup-new-account",
+                "parameters": [
+                    {
+                        "description": "FullName",
+                        "name": "fullName",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Email",
+                        "name": "email",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Password",
+                        "name": "password",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "ActivationCode",
+                        "name": "activationCode",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Activated new account and updated necessary data."
+                    },
+                    "400": {
+                        "description": "The server cannot or will not process the request due to an apparent client error."
+                    },
+                    "401": {
+                        "description": "The activation code didn't matched."
+                    },
+                    "404": {
+                        "description": "The account is not created yet by administrator."
+                    },
+                    "406": {
+                        "description": "The account already activated."
+                    }
+                }
+            }
+        }
+    }
+}

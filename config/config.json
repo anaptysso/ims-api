@@ -1,16 +1,16 @@
 {
-    "Environment": "dev",
-    "Port" : "5000",
-    "Database": {
-        "Path": "mongodb://localhost",
-        "Port": "27017"
-    },
-    "Smtp": {
-        "EnableService": "No",
-        "Host": "smtp.gmail.com",
-        "Port": "587",
-        "UserName": "2hintest.2020@gmail.com",
-        "Password": "XXXXXXXX"
-    },
-    "RandomSeedOffset": 134662458
+  "Environment": "dev",
+  "Port": "8000",
+  "Database": {
+    "Path": "mongodb://localhost",
+    "Port": "27017"
+  },
+  "Smtp": {
+    "EnableService": "No",
+    "Host": "smtp.gmail.com",
+    "Port": "587",
+    "UserName": "2hintest.2020@gmail.com",
+    "Password": "XXXXXXXX"
+  },
+  "RandomSeedOffset": 134662458
 }

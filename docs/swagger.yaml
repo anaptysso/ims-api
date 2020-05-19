@@ -1,0 +1,48 @@
+info:
+  contact: {}
+  license: {}
+paths:
+  /account/signup:
+    post:
+      consumes:
+      - application/json
+      description: It will register new users if the post data provided properly.
+      operationId: signup-new-account
+      parameters:
+      - description: FullName
+        in: body
+        name: fullName
+        required: true
+        schema:
+          type: string
+      - description: Email
+        in: body
+        name: email
+        required: true
+        schema:
+          type: string
+      - description: Password
+        in: body
+        name: password
+        required: true
+        schema:
+          type: string
+      - description: ActivationCode
+        in: body
+        name: activationCode
+        required: true
+        schema:
+          type: string
+      responses:
+        "202":
+          description: Activated new account and updated necessary data.
+        "400":
+          description: The server cannot or will not process the request due to an apparent client error.
+        "401":
+          description: The activation code didn't matched.
+        "404":
+          description: The account is not created yet by administrator.
+        "406":
+          description: The account already activated.
+      summary: Signup an account test
+swagger: "2.0"
