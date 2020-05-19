@@ -1,17 +1,29 @@
 package main
 
 import (
-	"net/http"
+	config "imsapi/config"
+	data "imsapi/data"
+	managers "imsapi/managers"
+	routes "imsapi/routes"
 
-	"github.com/labstack/echo"
+	echo "github.com/labstack/echo"
 )
 
 func main() {
+	configuration := config.GetConfiguration()
 	e := echo.New()
 
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Welcome to IMS API")
-	})
+	baseData := data.Data{
+		Configuration: configuration,
+	}
+
+	routes.Account{
+		Base: routes.Base{R: e.Group("/account")},
+		SignUpManager: managers.AccountManager{
+			Manager:     managers.Manager{},
+			AccountData: &data.AccountData{Data: baseData},
+		},
+	}.New()
 
 	e.Logger.Fatal(e.Start(":8000"))
 }
