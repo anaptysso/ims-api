@@ -3,15 +3,18 @@ package main
 import (
 	config "imsapi/config"
 	data "imsapi/data"
+	docs "imsapi/docs"
 	managers "imsapi/managers"
 	routes "imsapi/routes"
 
-	echo "github.com/labstack/echo"
+	echo "github.com/labstack/echo/v4"
+	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
 func main() {
 	configuration := config.GetConfiguration()
 	e := echo.New()
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
 	baseData := data.Data{
 		Configuration: configuration,
@@ -25,5 +28,12 @@ func main() {
 		},
 	}.New()
 
-	e.Logger.Fatal(e.Start(":8000"))
+	docs.SwaggerInfo.Title = "IMS API Documentation"
+	docs.SwaggerInfo.Description = "Simple API descriptions for ims API"
+	docs.SwaggerInfo.Version = "1.0"
+	docs.SwaggerInfo.Host = "localhost:" + configuration.Port
+	docs.SwaggerInfo.BasePath = ""
+	docs.SwaggerInfo.Schemes = []string{"http", "https"}
+
+	e.Logger.Fatal(e.Start(":" + configuration.Port))
 }
