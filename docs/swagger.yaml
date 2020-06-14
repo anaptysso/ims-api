@@ -44,5 +44,5 @@ paths:
           description: The account is not created yet by administrator.
         "406":
           description: The account already activated.
-      summary: Signup an account test
+      summary: Signup an account
 swagger: "2.0"
