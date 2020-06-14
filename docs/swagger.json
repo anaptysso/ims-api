@@ -11,7 +11,7 @@
                 "consumes": [
                     "application/json"
                 ],
-                "summary": "Signup an account test",
+                "summary": "Signup an account",
                 "operationId": "signup-new-account",
                 "parameters": [
                     {
