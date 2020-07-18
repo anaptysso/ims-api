@@ -16,7 +16,7 @@ func (this Account) New() {
 	this.R.POST("/signup", this.SignUp)
 }
 
-// @Summary Signup an account
+// @Summary Signup an account test
 // @Description It will register new users if the post data provided properly.
 // @ID signup-new-account
 // @Accept  json

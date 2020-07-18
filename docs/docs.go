@@ -31,7 +31,7 @@ var doc = `{
                 "consumes": [
                     "application/json"
                 ],
-                "summary": "Signup an account",
+                "summary": "Signup an account test",
                 "operationId": "signup-new-account",
                 "parameters": [
                     {
@@ -72,20 +72,8 @@ var doc = `{
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "description": "Activated new account and updated necessary data."
-                    },
-                    "400": {
-                        "description": "The server cannot or will not process the request due to an apparent client error."
-                    },
-                    "401": {
-                        "description": "The activation code didn't matched."
-                    },
-                    "404": {
-                        "description": "The account is not created yet by administrator."
-                    },
-                    "406": {
-                        "description": "The account already activated."
+                    "201": {
+                        "description": "Account is created"
                     }
                 }
             }
