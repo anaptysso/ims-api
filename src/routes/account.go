@@ -36,6 +36,5 @@ func (this Account) SignUp(c echo.Context) (err error) {
 		return c.NoContent(400)
 	}
 
-	///return c.NoContent(this.SignUpManager.SignUp(signUpViewModel))
-	return c.NoContent(201)
+	return c.NoContent(this.SignUpManager.SignUp(signUpViewModel))
 }

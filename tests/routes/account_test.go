@@ -7,31 +7,33 @@ import (
 	"testing"
 
 	routes "imsapi/src/routes"
+	accountViewModels "imsapi/src/viewModels/account"
+	managerMocks "imsapi/tests/mocks/managers"
+
+	"encoding/json"
 
 	echo "github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
 )
 
-var (
-	userJSON = `{
-		"fullName":"Jack Dorsey",
-		"email": "2hin2121@gmail.com",
-		"password": "Password"
-	}`
-)
-
 func TestSignUp(t *testing.T) {
-	// Arrange
+	signUpViewModel := accountViewModels.SignUpViewModel{
+		FullName: "Jack Dorsey",
+		Email:    "2hin2121@gmail.com",
+		Password: "Password",
+	}
+	jsonM, _ := json.Marshal(signUpViewModel)
 	e := echo.New()
-	req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(userJSON))
-	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
-	rec := httptest.NewRecorder()
-	c := e.NewContext(req, rec)
-	r := &routes.Account{}
+	request := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(string(jsonM)))
+	request.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	response := httptest.NewRecorder()
+	c := e.NewContext(request, response)
+	signUpManager := new(managerMocks.AccountManager)
+	accountRoutes := &routes.Account{
+		SignUpManager: signUpManager,
+	}
 
-	//Act
-	r.SignUp(c)
+	accountRoutes.SignUp(c)
 
-	// Assertions
-	assert.Equal(t, http.StatusCreated, rec.Code)
+	assert.Equal(t, http.StatusCreated, response.Code, "Created Status should be same")
 }
