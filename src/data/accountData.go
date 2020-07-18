@@ -3,7 +3,7 @@ package data
 import (
 	"context"
 
-	models "imsapi/models"
+	models "imsapi/src/models"
 
 	"gopkg.in/mgo.v2/bson"
 )

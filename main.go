@@ -2,10 +2,10 @@ package main
 
 import (
 	config "imsapi/config"
-	data "imsapi/data"
 	docs "imsapi/docs"
-	managers "imsapi/managers"
-	routes "imsapi/routes"
+	data "imsapi/src/data"
+	managers "imsapi/src/managers"
+	routes "imsapi/src/routes"
 
 	echo "github.com/labstack/echo/v4"
 	echoSwagger "github.com/swaggo/echo-swagger"
@@ -26,7 +26,7 @@ func main() {
 			Manager:     managers.Manager{},
 			AccountData: &data.AccountData{Data: baseData},
 		},
-	}.New()
+	}.ConnectRoutes()
 
 	docs.SwaggerInfo.Title = "IMS API Documentation"
 	docs.SwaggerInfo.Description = "Simple API descriptions for ims API"

@@ -6,8 +6,8 @@ import (
 	"os"
 	"sync"
 
-	enableServiceEnum "imsapi/enums/enableService"
-	environmentEnum "imsapi/enums/environment"
+	enableServiceEnum "imsapi/src/enums/enableService"
+	environmentEnum "imsapi/src/enums/environment"
 )
 
 type Configuration struct {
