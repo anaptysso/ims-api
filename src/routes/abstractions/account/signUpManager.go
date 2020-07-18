@@ -1,7 +1,7 @@
 package managers
 
 import (
-	accountViewModels "imsapi/viewModels/account"
+	accountViewModels "imsapi/src/viewModels/account"
 )
 
 type SignUpManager interface {

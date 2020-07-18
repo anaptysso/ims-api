@@ -3,8 +3,8 @@ package routes
 import (
 	echo "github.com/labstack/echo/v4"
 
-	managers "imsapi/routes/abstractions/account"
-	accountViewModels "imsapi/viewModels/account"
+	managers "imsapi/src/routes/abstractions/account"
+	accountViewModels "imsapi/src/viewModels/account"
 )
 
 type Account struct {
@@ -12,7 +12,7 @@ type Account struct {
 	SignUpManager managers.SignUpManager
 }
 
-func (this Account) New() {
+func (this Account) ConnectRoutes() {
 	this.R.POST("/signup", this.SignUp)
 }
 
@@ -36,5 +36,6 @@ func (this Account) SignUp(c echo.Context) (err error) {
 		return c.NoContent(400)
 	}
 
-	return c.NoContent(this.SignUpManager.SignUp(signUpViewModel))
+	///return c.NoContent(this.SignUpManager.SignUp(signUpViewModel))
+	return c.NoContent(201)
 }

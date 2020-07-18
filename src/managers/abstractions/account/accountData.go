@@ -1,7 +1,7 @@
 package data
 
 import (
-	models "imsapi/models"
+	models "imsapi/src/models"
 
 	"gopkg.in/mgo.v2/bson"
 )

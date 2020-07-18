@@ -5,9 +5,9 @@ import (
 
 	"golang.org/x/crypto/bcrypt"
 
-	data "imsapi/managers/abstractions/account"
-	models "imsapi/models"
-	accountViewModels "imsapi/viewModels/account"
+	data "imsapi/src/managers/abstractions/account"
+	models "imsapi/src/models"
+	accountViewModels "imsapi/src/viewModels/account"
 )
 
 type AccountManager struct {
