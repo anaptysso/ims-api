@@ -2,16 +2,16 @@ info:
   contact: {}
   license: {}
 paths:
-  /account/signup:
+  /account/Signup:
     post:
       consumes:
       - application/json
       description: It will register new users if the post data provided properly.
-      operationId: signup-new-account
+      operationId: Signup-new-account
       parameters:
       - description: FullName
         in: body
-        name: fullName
+        name: fullname
         required: true
         schema:
           type: string
@@ -27,14 +27,12 @@ paths:
         required: true
         schema:
           type: string
-      - description: ActivationCode
-        in: body
-        name: activationCode
-        required: true
-        schema:
-          type: string
       responses:
         "201":
           description: Account is created
-      summary: Signup an account test
+        "250":
+          description: An account with this email already exists
+        "400":
+          description: Invalid signup parameters
+      summary: Signup an account
 swagger: "2.0"
