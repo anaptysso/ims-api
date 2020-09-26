@@ -2,23 +2,30 @@ package config
 
 import (
 	"encoding/json"
-
 	"os"
 	"sync"
-
-	enableServiceEnum "imsapi/src/enums/enableService"
-	environmentEnum "imsapi/src/enums/environment"
 )
 
+// Enum values
+const (
+	EnvironmentDevelopment string = "dev"
+	EnvironmentProduction  string = "production"
+
+	ServiceEnabled  string = "Yes"
+	ServiceDisabled string = "No"
+)
+
+// Configuration works with configuration of this project
 type Configuration struct {
-	Environment environmentEnum.Environment
+	Environment string
 	Port        string
 	Database    struct {
 		Path string
 		Port string
+		Name string
 	}
-	Smtp struct {
-		EnableService enableServiceEnum.EnableService
+	SMTP struct {
+		EnableService string
 		Host          string
 		Port          string
 		UserName      string
@@ -30,9 +37,10 @@ type Configuration struct {
 var instance *Configuration
 var once sync.Once
 
-func GetConfiguration() *Configuration {
+// GetConfiguration will return the configuration with go object
+func GetConfiguration(configFilePath string) *Configuration {
 	once.Do(func() {
-		file, _ := os.Open("./config/config.json")
+		file, _ := os.Open(configFilePath)
 		defer file.Close()
 		decoder := json.NewDecoder(file)
 		instance = &Configuration{}

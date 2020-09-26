@@ -1,6 +1,9 @@
 {
   "cSpell.words": [
+    "bson",
     "imsapi",
-    "stretchr"
+    "mongodb",
+    "stretchr",
+    "swaggo"
   ]
 }

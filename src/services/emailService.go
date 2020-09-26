@@ -1,35 +1,31 @@
 package services
 
 import (
-	"fmt"
+	config "imsapi/config"
+	enum "imsapi/src/enum"
 	"net/smtp"
 	"strings"
-
-	enableServiceEnum "imsapi/src/enums/enableService"
-	environmentEnum "imsapi/src/enums/environment"
 )
 
+// EmailService provides the way to interact with 3rd party through email
 type EmailService struct {
-	Service
+	Config *config.Configuration
 }
 
-func (this EmailService) SendMailSystem(to []string, subject string, body string) {
-	if this.Configuration.Smtp.EnableService == enableServiceEnum.Yes {
+// SendMail function sends email to other email address
+func (es *EmailService) SendMail(to []string, subject string, body string) {
+	if es.Config.SMTP.EnableService == enum.ServiceEnabled {
 		message := []byte("To: " + strings.Join(to, ",") + "\r\n" +
 			"Subject: " + subject + "\r\n" +
 			"\r\n" + body)
 
-		auth := smtp.PlainAuth("", this.Configuration.Smtp.UserName, this.Configuration.Smtp.Password, this.Configuration.Smtp.Host)
-		err := smtp.SendMail(this.Configuration.Smtp.Host+":"+this.Configuration.Smtp.Port, auth, this.Configuration.Smtp.UserName, to, message)
+		auth := smtp.PlainAuth("", es.Config.SMTP.UserName, es.Config.SMTP.Password, es.Config.SMTP.Host)
+		err := smtp.SendMail(es.Config.SMTP.Host+":"+es.Config.SMTP.Port, auth, es.Config.SMTP.UserName, to, message)
 
 		if err != nil {
 			panic(err)
 		}
 	} else {
-		if this.Configuration.Environment == environmentEnum.Live {
-			panic("Email service isn't enabled")
-		} else if this.Configuration.Environment == environmentEnum.Development {
-			fmt.Println("Email service isn't enabled")
-		}
+		panic("Email service isn't enabled")
 	}
 }

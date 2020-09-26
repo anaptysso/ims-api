@@ -25,18 +25,18 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/account/signup": {
+        "/account/Signup": {
             "post": {
                 "description": "It will register new users if the post data provided properly.",
                 "consumes": [
                     "application/json"
                 ],
-                "summary": "Signup an account test",
-                "operationId": "signup-new-account",
+                "summary": "Signup an account",
+                "operationId": "Signup-new-account",
                 "parameters": [
                     {
                         "description": "FullName",
-                        "name": "fullName",
+                        "name": "fullname",
                         "in": "body",
                         "required": true,
                         "schema": {
@@ -60,20 +60,17 @@ var doc = `{
                         "schema": {
                             "type": "string"
                         }
-                    },
-                    {
-                        "description": "ActivationCode",
-                        "name": "activationCode",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
                     }
                 ],
                 "responses": {
                     "201": {
                         "description": "Account is created"
+                    },
+                    "250": {
+                        "description": "An account with this email already exists"
+                    },
+                    "400": {
+                        "description": "Invalid signup parameters"
                     }
                 }
             }

@@ -3,9 +3,10 @@
   "Port": "8000",
   "Database": {
     "Path": "mongodb://localhost",
-    "Port": "27017"
+    "Port": "27017",
+    "Name": "imsdb"
   },
-  "Smtp": {
+  "SMTP": {
     "EnableService": "No",
     "Host": "smtp.gmail.com",
     "Port": "587",
